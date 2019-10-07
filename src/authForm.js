@@ -2,41 +2,49 @@ import React, { useState } from 'react';
 import './authenticationForm.css';
 
 function AuthenticationForm() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const username = useFormInput('');
+  const email = useFormInput('');
+  const password = useFormInput('');
 
   const handleSubmit = e => {
     e.preventDefault()
+
     const user = {
       username,
       email,
       password,
     }
+
     alert(`submitting... ${JSON.stringify(user)}`);
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <label>username
-        <input 
-          onChange={e => setUsername(e.target.value)}
-          value={username} />
+        <input {...username} />
       </label>
       <label>email
-        <input 
-          onChange={e => setEmail(e.target.value)}
-          value={email} />
+        <input {...email} />
       </label>
       <label>password
-        <input 
-          onChange={e => setPassword(e.target.value)}
-          type="password"
-          value={password} />
+        <input {...password} type="password"/>
       </label>
       <button>submit</button>
     </form>
   )
+}
+
+function useFormInput(initialValue) {
+  const [value, setValue] = useState(initialValue);
+
+  function handleChange(e) {
+    setValue(e.target.value);
+  }
+
+  return {
+    value,
+    onChange: handleChange,
+  };
 }
 
 export default AuthenticationForm;
