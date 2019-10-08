@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import EditForm from './editForm';
+import './todo.css';
 
 function Todo({ 
   todoId, 
@@ -29,6 +30,7 @@ function Todo({
         : 
           <span 
             onClick={() => toggleTodo(todoId) }
+            className={ curUrgency }
             style={{ textDecoration: todoIsComplete ? "line-through" : "none" }}
           >
             { todoText }

@@ -11,8 +11,7 @@ function EditForm({
   const [ newTodoText, setTodoText ] = useState(todoText);
   console.log('curUrgency...', curUrgency);
 
-  function handleUpdateUrgency(todoId, status) {
-    console.log('handleUpdateUrgency...', todoId, status)
+  function handleSetUrgency(todoId, status) {
     updateUrgency(todoId, status);
     setIsEditing(false);
   }
@@ -27,7 +26,7 @@ function EditForm({
       <input onChange={ e => setTodoText(e.target.value) } value={ newTodoText } />
       <select 
         value={curUrgency}
-        onChange={e => handleUpdateUrgency(todoId, e.target.value)}
+        onChange={e => handleSetUrgency(todoId, e.target.value)}
       >
         <option value='low'>low</option>
         <option value='medium'>medium</option>

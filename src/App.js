@@ -9,12 +9,13 @@ function App() {
   const [ allTodos, setTodos ] = useState(todos);
   console.log(allTodos)
 
-  function addTodos(todoText) {
+  function addTodos(todoText, urgency) {
+    console.log(urgency)
     setTodos([...allTodos, 
        { id: uuid(), 
          todoText,
-         isComplete: false, 
-         urgency: 'medium' }
+         urgency,
+         isComplete: false, }
     ]);
   }
 
@@ -53,7 +54,10 @@ function App() {
 
   return (
     <div className="App">
-      <TodoForm allTodos={ allTodos } addTodos={ addTodos } />
+      <TodoForm 
+        allTodos={ allTodos }
+        addTodos={ addTodos } 
+      />
       <TodoList 
         removeTodo={ removeTodo }
         todos={ allTodos } 
