@@ -10,7 +10,12 @@ function App() {
   console.log(allTodos)
 
   function addTodos(todoText) {
-    setTodos([...allTodos, { id: uuid(), todoText, isComplete: false}]);
+    setTodos([...allTodos, 
+       { id: uuid(), 
+         todoText,
+         isComplete: false, 
+         urgency: 'medium' }
+    ]);
   }
 
   function removeTodo(curId) {
@@ -34,6 +39,14 @@ function App() {
     setTodos(updatedTodos);
   }
 
+  function updateUrgency(todoId, newUrgency) {
+    const updatedTodos = allTodos.map(todo => {
+      if (todo.id === todoId) todo.urgency = newUrgency;
+      return todo;
+    });
+    setTodos(updatedTodos);
+  }
+
   useEffect(() => {
     window.localStorage.setItem('todos', JSON.stringify(allTodos));
   });
@@ -44,6 +57,7 @@ function App() {
       <TodoList 
         removeTodo={ removeTodo }
         todos={ allTodos } 
+        updateUrgency={ updateUrgency }
         updateTodoText={ updateTodoText } 
         toggleTodo={ toggleTodo }
       />

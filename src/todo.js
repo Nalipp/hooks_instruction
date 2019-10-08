@@ -7,6 +7,8 @@ function Todo({
   todoIsComplete,
   removeTodo,
   updateTodoText,
+  updateUrgency,
+  curUrgency,
   toggleTodo 
 }) {
 
@@ -19,6 +21,8 @@ function Todo({
           <EditForm 
             todoId={ todoId } 
             updateTodoText={ updateTodoText }
+            updateUrgency={ updateUrgency }
+            curUrgency={ curUrgency }
             setIsEditing={ setIsEditing }
             todoText={ todoText } 
           /> 
